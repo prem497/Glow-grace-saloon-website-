@@ -12,13 +12,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap">
 <style>
 :root{
-  --bg:#fbf6f3;--surf:#f3e7e3;--ink:#2d1727;--mut:#654e5e;--gold:#c98b7b;--gt:#8a4a3b;--gold2:#dba797;--dark:#291223;--dk2:#3d1c35;
+  /* Black + Champagne Gold + Cream (Luxury Editorial Light Theme) */
+  --bg:#FAF7F2;          /* Luminous Silk Cream */
+  --surf:#F3EDE4;        /* Soft Warm Cream Surface */
+  --surf2:#EBE3D5;       /* Elevated Cream Accent */
+  --card-bg:#FFFFFF;     /* Crisp Pure White Card Canvas */
+  --ink:#0E0E0E;         /* Jet Obsidian Black Primary */
+  --ink-soft:#242320;    /* Soft Obsidian */
+  --mut:#5C574F;         /* Sophisticated Muted Taupe */
+  --gold:#C5A059;        /* True Champagne Gold */
+  --gold-light:#EFE2C3;  /* Shimmer Champagne */
+  --gold-glow:rgba(197,160,89,.28);
+  --gold2:#DFC488;       /* Hover Champagne */
+  --gt:#8E6B2C;          /* Deep Bronze Gold for legible text */
+  --dark:#0C0C0C;        /* Rich Velvet Black for dark accent stages/footer */
+  --dk2:#161513;         /* Deep Graphite Stage */
+  --border-gold:rgba(197,160,89,.3);
+  --border-subtle:rgba(197,160,89,.16);
+  --shadow-luxe:0 12px 36px rgba(14,14,14,.05),0 2px 8px rgba(197,160,89,.08);
   box-sizing:border-box;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#1f0c1a;--surf:#2e1527;--ink:#fbf6f3;--mut:#cfb9c5;--gold:#c98b7b;--gt:#dba797}
-}
-:root[data-theme="dark"]{--bg:#1f0c1a;--surf:#2e1527;--ink:#fbf6f3;--mut:#cfb9c5;--gold:#c98b7b;--gt:#dba797}
 
 html{height:100%;scroll-behavior:smooth}
 *,*:before,*:after{box-sizing:border-box}
@@ -27,69 +40,82 @@ body{
   font:300 clamp(16px,1.05vw,18px)/1.7 Jost,system-ui,sans-serif;
   overflow-x:hidden;
 }
-h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.15;margin:0 0 .5em}
-h1{font-size:clamp(3.2rem,8.5vw,6.8rem);letter-spacing:-.015em}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.15;margin:0 0 .5em;color:var(--ink)}
+h1{font-size:clamp(3.2rem,8.5vw,6.4rem);letter-spacing:-.015em}
 h2{font-size:clamp(2.2rem,4.8vw,3.8rem)}
 h3{font-size:clamp(1.4rem,2.2vw,1.9rem)}
 h4{font-size:clamp(1.15rem,1.8vw,1.45rem)}
 
-/* Full-width Responsive Container for Mobile, Tablet, Laptop, Desktop */
 .wrap{
-  max-width:1440px;
-  width:100%;
-  margin:0 auto;
+  max-width:1440px;width:100%;margin:0 auto;
   padding:0 clamp(18px,4vw,56px);
 }
-section{padding:clamp(64px,8vw,112px) 0}
+section{padding:clamp(68px,8.5vw,120px) 0}
 
+/* Luxury Buttons */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  border:1px solid var(--gold);background:var(--gold);color:#24101f;
+  border:1.5px solid var(--gold);background:#0E0E0E;color:#FAF7F2;
   padding:clamp(12px,1.5vw,16px) clamp(24px,2.5vw,36px);
-  font:500 clamp(.9rem,1vw,1rem) Jost,sans-serif;letter-spacing:.04em;
-  cursor:pointer;text-decoration:none;border-radius:30px;
-  transition:transform .2s ease,background .2s,box-shadow .2s;
+  font:500 clamp(.9rem,1vw,1rem) Jost,sans-serif;letter-spacing:.06em;
+  text-transform:uppercase;font-size:.82rem;
+  cursor:pointer;text-decoration:none;border-radius:40px;
+  box-shadow:0 6px 20px rgba(14,14,14,.15),0 0 16px rgba(197,160,89,.15);
+  transition:all .26s ease;
 }
-.btn:hover{transform:translateY(-2px);background:var(--gold2);box-shadow:0 8px 24px rgba(201,139,123,.35)}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--gold)}
-.btn.ghost:hover{background:rgba(201,139,123,.15)}
+.btn:hover{
+  transform:translateY(-2px);background:linear-gradient(135deg,#C5A059,#DFCA97);
+  color:#0E0E0E;border-color:#DFCA97;
+  box-shadow:0 12px 28px rgba(197,160,89,.4);
+}
+.btn.ghost{
+  background:transparent;color:var(--ink);border-color:var(--gold);
+  box-shadow:none;
+}
+.btn.ghost:hover{
+  background:rgba(197,160,89,.12);color:#0E0E0E;transform:translateY(-2px);
+}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-/* Header & Navigation */
+/* Luxury Light Theme Header */
 header{
   position:fixed;top:0;left:0;right:0;z-index:50;
-  background:rgba(41,18,35,.94);backdrop-filter:blur(14px);
-  color:#fbf6f3;height:72px;display:flex;align-items:center;
-  border-bottom:1px solid rgba(219,167,151,.18);
+  background:rgba(250,247,242,.92);backdrop-filter:blur(18px);
+  color:var(--ink);height:76px;display:flex;align-items:center;
+  border-bottom:1px solid var(--border-gold);box-shadow:0 4px 20px rgba(0,0,0,.03);
 }
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:100%}
-.logo{font:500 clamp(1.6rem,2.5vw,2.1rem) "Cormorant Garamond",serif;text-decoration:none;color:#dba797;letter-spacing:.02em}
-nav{display:flex;gap:clamp(14px,2vw,28px);font-size:.92rem}
-nav a{text-decoration:none;opacity:.88;transition:color .2s,opacity .2s}
-nav a:hover{opacity:1;color:#dba797}
-#mb{display:none;background:none;border:1px solid #dba797;color:#dba797;padding:8px 14px;border-radius:6px;cursor:pointer}
+.logo{
+  font:600 clamp(1.6rem,2.5vw,2.2rem) "Cormorant Garamond",serif;
+  text-decoration:none;color:var(--ink);letter-spacing:.04em;
+}
+.logo span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:.92rem}
+nav a{text-decoration:none;color:var(--ink);opacity:.85;font-weight:400;transition:all .2s;letter-spacing:.02em}
+nav a:hover{opacity:1;color:var(--gt)}
+#mb{display:none;background:none;border:1px solid var(--gold);color:var(--ink);padding:8px 14px;border-radius:6px;cursor:pointer}
 @media(max-width:960px){
   #mb{display:block}
-  nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#291223;padding:24px clamp(20px,5vw,40px);box-shadow:0 12px 30px rgba(0,0,0,.6)}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#FAF7F2;padding:24px clamp(20px,5vw,40px);box-shadow:0 12px 30px rgba(0,0,0,.15);border-bottom:1px solid var(--border-gold)}
   nav.open{display:flex}
 }
 
-/* Hero Section */
+/* Hero Section (Light Theme Cream + Champagne Gold Aura + Obsidian) */
 #hero{
   min-height:92vh;display:flex;align-items:center;
-  background:radial-gradient(ellipse at 70% 30%,#6b3a5a 0%,#24101f 68%);
-  color:#fbf6f3;position:relative;overflow:hidden;
-  padding:clamp(120px,16vh,180px) 0 clamp(64px,8vh,100px);
+  background:radial-gradient(ellipse at 80% 25%,rgba(231,213,170,.45) 0%,rgba(250,247,242,.92) 58%,#FAF7F2 100%),linear-gradient(145deg,#FAF7F2 0%,#F3ECE2 100%);
+  color:var(--ink);position:relative;overflow:hidden;
+  padding:clamp(130px,18vh,190px) 0 clamp(70px,9vh,110px);
 }
-#hero p{max-width:44ch;font-size:clamp(1.1rem,1.8vw,1.35rem);color:#e8d3d8;line-height:1.6}
+#hero h1{color:var(--ink)}
+#hero p{max-width:48ch;font-size:clamp(1.1rem,1.8vw,1.35rem);color:var(--mut);line-height:1.65}
 #hero .row{display:flex;gap:16px;flex-wrap:wrap;margin-top:36px}
-#hero .btn.ghost{color:#fbf6f3;border-color:#dba797}
 .orb{
   position:absolute;right:-4vw;top:10%;width:min(48vw,560px);aspect-ratio:1;
-  border-radius:50%;background:conic-gradient(from 200deg,#dba797,#fbf6f3,#a85f4e,#dba797);
-  filter:blur(1px);opacity:.85;animation:spin 45s linear infinite;box-shadow:0 0 140px rgba(219,167,151,.35);
+  border-radius:50%;background:conic-gradient(from 180deg,#C5A059,#FAF7F2,#DFC488,#916F2E,#C5A059);
+  filter:blur(1px);opacity:.75;animation:spin 45s linear infinite;box-shadow:0 0 120px rgba(197,160,89,.35);
 }
-.orb:after{content:"";position:absolute;inset:7%;border-radius:50%;background:#24101f}
+.orb:after{content:"";position:absolute;inset:7%;border-radius:50%;background:#FAF7F2}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* Responsive Grids */
@@ -100,44 +126,47 @@ nav a:hover{opacity:1;color:#dba797}
 
 .about p{color:var(--mut);max-width:62ch}
 .facts{display:grid;gap:16px}
-.fact{background:var(--surf);padding:24px;border-left:4px solid var(--gold);border-radius:0 14px 14px 0}
+.fact{background:#FFFFFF;padding:26px;border-left:4px solid var(--gold);border-radius:0 16px 16px 0;box-shadow:var(--shadow-luxe);border-top:1px solid var(--border-subtle);border-right:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
 
-/* Services 3D Tilt Cards */
+/* Services 3D Tilt Cards (Luxury White / Cream / Gold Cards) */
 .svc{perspective:1100px}
 .card{
-  background:linear-gradient(165deg,rgba(59,31,51,.95) 0%,rgba(36,16,31,.98) 100%);
-  color:#fbf6f3;padding:0;min-height:380px;transform-style:preserve-3d;
-  transition:transform .16s ease-out,box-shadow .3s ease,border-color .3s;
-  position:relative;cursor:pointer;border:1px solid rgba(219,167,151,.25);
-  border-radius:18px;text-align:left;font:inherit;width:100%;overflow:hidden;
-  display:flex;flex-direction:column;box-shadow:0 14px 34px rgba(0,0,0,.35);
+  background:#FFFFFF;
+  color:var(--ink);padding:0;min-height:380px;transform-style:preserve-3d;
+  transition:transform .18s ease-out,box-shadow .3s ease,border-color .3s;
+  position:relative;cursor:pointer;border:1px solid var(--border-subtle);
+  border-radius:20px;text-align:left;font:inherit;width:100%;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:var(--shadow-luxe);
 }
-.card:hover,.card:focus-visible{box-shadow:0 30px 60px -10px rgba(0,0,0,.7),0 0 30px rgba(201,139,123,.3);border-color:rgba(219,167,151,.85)}
-.card.active{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 24px 50px rgba(0,0,0,.6)}
-.card-img-wrap{position:relative;width:100%;height:220px;overflow:hidden;background:#200e1b;transform-style:preserve-3d}
+.card:hover,.card:focus-visible{
+  box-shadow:0 24px 50px rgba(14,14,14,.09),0 0 28px rgba(197,160,89,.28);
+  border-color:var(--gold);
+}
+.card.active{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 20px 45px rgba(197,160,89,.22)}
+.card-img-wrap{position:relative;width:100%;height:220px;overflow:hidden;background:#F3ECE2;transform-style:preserve-3d}
 .card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transform:translateZ(18px);transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .card:hover .card-img-wrap img{transform:scale(1.08) translateZ(35px)}
-.card-sheen{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.18) 0%,transparent 60%);opacity:0;transition:opacity .25s ease;z-index:6;border-radius:18px}
+.card-sheen{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(197,160,89,.15) 0%,transparent 65%);opacity:0;transition:opacity .25s ease;z-index:6;border-radius:20px}
 .card:hover .card-sheen{opacity:1}
-.card-badge{position:absolute;top:14px;right:14px;background:rgba(36,16,31,.88);backdrop-filter:blur(8px);border:1px solid rgba(219,167,151,.45);color:#dba797;padding:5px 12px;border-radius:20px;font-size:.74rem;letter-spacing:.04em;font-weight:500;transform:translateZ(45px);z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.card-badge{position:absolute;top:14px;right:14px;background:#0E0E0E;color:#DFC488;border:1px solid var(--border-gold);padding:5px 12px;border-radius:20px;font-size:.74rem;letter-spacing:.05em;font-weight:600;text-transform:uppercase;transform:translateZ(45px);z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .card-body{padding:22px 24px;display:flex;flex-direction:column;flex-grow:1;transform-style:preserve-3d;position:relative;z-index:2}
 .card-top-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;transform:translateZ(26px)}
-.card-top-row .ic{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(219,167,151,.18);font:500 1.25rem "Cormorant Garamond",serif;color:#dba797}
-.card-top-row .category{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:#dba797}
-.card h3{font-size:1.4rem;transform:translateZ(32px);margin:0 0 .4em;color:#fbf6f3}
-.card p{font-size:.88rem;color:#d3bfc9;line-height:1.6;margin:0 0 14px;transform:translateZ(20px);flex-grow:1}
-.card-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid rgba(219,167,151,.16);font-size:.84rem;color:#dba797;transform:translateZ(28px)}
-.card-meta .price{font-weight:500;color:#fbf6f3;font-size:.95rem}
-#svcInfo{margin-top:32px;padding:28px;background:var(--surf);min-height:96px;border-left:4px solid var(--gold);border-radius:0 16px 16px 0;box-shadow:0 8px 30px rgba(0,0,0,.08);transition:all .3s}
+.card-top-row .ic{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(197,160,89,.15);font:600 1.25rem "Cormorant Garamond",serif;color:var(--gt)}
+.card-top-row .category{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gt);font-weight:600}
+.card h3{font-size:1.4rem;transform:translateZ(32px);margin:0 0 .4em;color:var(--ink)}
+.card p{font-size:.88rem;color:var(--mut);line-height:1.6;margin:0 0 14px;transform:translateZ(20px);flex-grow:1}
+.card-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border-subtle);font-size:.84rem;color:var(--gt);transform:translateZ(28px)}
+.card-meta .price{font-weight:600;color:var(--ink);font-size:.98rem}
+#svcInfo{margin-top:32px;padding:28px;background:#FFFFFF;min-height:96px;border-left:4px solid var(--gold);border-radius:0 16px 16px 0;box-shadow:var(--shadow-luxe);border-top:1px solid var(--border-subtle);border-right:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);transition:all .3s}
 
-/* Real Human Haircut Experience & Mirror Smile Section */
-#exp{background:linear-gradient(180deg,#24101f 0%,#190a16 100%);color:#fbf6f3;position:relative}
+/* Real Human Haircut Experience (Deep Velvet Black Stage for Cinematic Drama) */
+#exp{background:linear-gradient(180deg,#0C0C0C 0%,#151412 100%);color:#FAF7F2;position:relative}
 .real-viewport{
   position:relative;width:100%;height:clamp(460px,64vh,680px);
   border-radius:22px;overflow:hidden;
-  border:1px solid rgba(219,167,151,.35);
-  box-shadow:0 24px 65px rgba(0,0,0,.65);
-  background:#140812;user-select:none;cursor:ew-resize;
+  border:1px solid rgba(197,160,89,.35);
+  box-shadow:0 24px 65px rgba(0,0,0,.7),0 0 35px rgba(197,160,89,.15);
+  background:#0A0A0A;user-select:none;cursor:ew-resize;
   transform-style:preserve-3d;transition:transform .2s ease-out;
 }
 .real-split-wrap{position:absolute;inset:0;width:100%;height:100%}
@@ -147,25 +176,25 @@ nav a:hover{opacity:1;color:#dba797}
 .real-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
 .real-divider{
   position:absolute;top:0;bottom:0;left:var(--split-pos,50%);
-  width:4px;background:#fbf6f3;
-  box-shadow:0 0 16px rgba(255,255,255,.95),0 0 30px rgba(219,167,151,.85);
+  width:4px;background:#FAF7F2;
+  box-shadow:0 0 16px rgba(255,255,255,.95),0 0 30px rgba(197,160,89,.9);
   transform:translateX(-50%);z-index:10;pointer-events:none;
 }
 .real-divider-handle{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:50px;height:50px;border-radius:50%;
-  background:linear-gradient(135deg,#dba797,#c98b7b);border:2px solid #fff;
-  box-shadow:0 4px 20px rgba(0,0,0,.6),0 0 18px rgba(219,167,151,.9);
+  background:linear-gradient(135deg,#DFCA97,#C5A059);border:2px solid #fff;
+  box-shadow:0 4px 20px rgba(0,0,0,.6),0 0 20px rgba(197,160,89,.8);
   display:flex;align-items:center;justify-content:center;
-  color:#24101f;font-size:1.15rem;font-weight:bold;
+  color:#0E0E0E;font-size:1.15rem;font-weight:bold;
 }
 .real-badge{
   position:absolute;top:20px;padding:8px 20px;border-radius:30px;
   font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
   backdrop-filter:blur(10px);z-index:5;pointer-events:none;box-shadow:0 6px 18px rgba(0,0,0,.5);
 }
-.real-badge.before-badge{left:20px;background:rgba(36,16,31,.88);color:#dba797;border:1px solid rgba(219,167,151,.45)}
-.real-badge.after-badge{right:20px;background:rgba(201,139,123,.95);color:#24101f;border:1px solid #fbf6f3}
+.real-badge.before-badge{left:20px;background:rgba(14,14,14,.88);color:#DFC488;border:1px solid rgba(197,160,89,.45)}
+.real-badge.after-badge{right:20px;background:linear-gradient(135deg,#DFCA97,#C5A059);color:#0E0E0E;border:1px solid #FAF7F2}
 
 .real-tagline-hud{
   position:absolute;bottom:24px;left:24px;right:24px;
@@ -173,89 +202,90 @@ nav a:hover{opacity:1;color:#dba797}
   pointer-events:none;z-index:8;flex-wrap:wrap;gap:14px;
 }
 .real-tag-pill{
-  background:rgba(36,16,31,.88);backdrop-filter:blur(12px);
-  border:1px solid rgba(219,167,151,.5);border-radius:18px;
+  background:rgba(14,14,14,.9);backdrop-filter:blur(14px);
+  border:1px solid rgba(197,160,89,.5);border-radius:18px;
   padding:14px 24px;max-width:560px;box-shadow:0 10px 30px rgba(0,0,0,.6);
 }
-.real-tag-pill h4{margin:0 0 4px;color:#fbf6f3}
-.real-tag-pill p{margin:0;font-size:.85rem;color:#dba797}
+.real-tag-pill h4{margin:0 0 4px;color:#FAF7F2}
+.real-tag-pill p{margin:0;font-size:.85rem;color:#DFC488}
 
 .look-selector-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
 .look-btn{
-  background:rgba(59,31,51,.75);border:1px solid rgba(219,167,151,.35);
-  color:#fbf6f3;padding:10px 22px;border-radius:30px;font:500 .88rem Jost,sans-serif;
+  background:rgba(22,21,19,.85);border:1px solid rgba(197,160,89,.35);
+  color:#FAF7F2;padding:10px 22px;border-radius:30px;font:500 .88rem Jost,sans-serif;
   cursor:pointer;transition:all .25s ease;
 }
 .look-btn:hover,.look-btn.active{
-  background:var(--gold);color:#24101f;border-color:var(--gold);
-  transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,139,123,.35);
+  background:linear-gradient(135deg,#C5A059,#DFCA97);color:#0E0E0E;border-color:var(--gold);
+  transform:translateY(-2px);box-shadow:0 6px 20px rgba(197,160,89,.4);
 }
 
 .stage-controls{
-  margin-top:22px;background:rgba(59,31,51,.65);border:1px solid rgba(219,167,151,.25);
+  margin-top:22px;background:rgba(22,21,19,.75);border:1px solid rgba(197,160,89,.25);
   border-radius:18px;padding:22px clamp(16px,2.5vw,28px);display:flex;flex-direction:column;gap:18px;
   box-shadow:0 12px 30px rgba(0,0,0,.35);
 }
 .ctl-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .ctl-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .slider-wrap{display:flex;align-items:center;gap:14px;flex-grow:1;max-width:540px}
-.slider-label{font-size:.85rem;font-weight:500;color:#dba797;white-space:nowrap}
+.slider-label{font-size:.85rem;font-weight:500;color:#DFC488;white-space:nowrap}
 .btn-sm{padding:8px 18px;font-size:.82rem;border-radius:24px}
-.btn-sm.active{background:var(--gold);color:#24101f;border-color:var(--gold)}
-input[type=range]{accent-color:#dba797;width:100%}
+.btn-sm.active{background:linear-gradient(135deg,#C5A059,#DFCA97);color:#0E0E0E;border-color:var(--gold)}
+input[type=range]{accent-color:#DFC488;width:100%}
 
 .compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(280px,28vw,380px),1fr));gap:22px;margin-top:28px}
-.compare-card{background:linear-gradient(165deg,rgba(59,31,51,.7) 0%,rgba(36,16,31,.85) 100%);border:1px solid rgba(219,167,151,.25);border-radius:16px;padding:24px;box-shadow:0 10px 25px rgba(0,0,0,.3)}
-.compare-card h4{font-size:1.35rem;margin:0 0 8px;color:#dba797}
-.compare-card p{font-size:.86rem;color:#d3bfc9;line-height:1.6;margin:0}
+.compare-card{background:linear-gradient(165deg,rgba(24,23,20,.8) 0%,rgba(14,14,14,.92) 100%);border:1px solid rgba(197,160,89,.25);border-radius:16px;padding:24px;box-shadow:0 10px 25px rgba(0,0,0,.3)}
+.compare-card h4{font-size:1.35rem;margin:0 0 8px;color:#DFC488}
+.compare-card p{font-size:.86rem;color:#E6DFD5;line-height:1.6;margin:0}
 
 /* Gallery & Products */
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
-.filters button{background:none;border:1px solid var(--gold);color:var(--ink);padding:8px 22px;cursor:pointer;font:inherit;border-radius:24px;transition:all .2s}
-.filters button[aria-pressed=true]{background:var(--gold);color:#24101f}
-.tile{aspect-ratio:4/5;position:relative;display:flex;align-items:flex-end;padding:24px;color:#fff;overflow:hidden;border-radius:18px;box-shadow:0 12px 28px rgba(0,0,0,.25);cursor:pointer}
+.filters button{background:#FFFFFF;border:1.5px solid var(--border-gold);color:var(--ink);padding:8px 22px;cursor:pointer;font:500 .88rem Jost,sans-serif;border-radius:24px;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.filters button[aria-pressed=true]{background:#0E0E0E;color:#FAF7F2;border-color:#0E0E0E}
+.tile{aspect-ratio:4/5;position:relative;display:flex;align-items:flex-end;padding:24px;color:#fff;overflow:hidden;border-radius:20px;box-shadow:var(--shadow-luxe);cursor:pointer;border:1px solid var(--border-subtle)}
 .tile-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.tile:hover .tile-img{transform:scale(1.1)}
-.tile-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(36,16,31,.92) 0%,rgba(36,16,31,.2) 50%,transparent 100%)}
-.tile span{position:relative;z-index:2;font-family:"Cormorant Garamond",serif;font-size:1.55rem;text-shadow:0 2px 10px rgba(0,0,0,.8);color:#fbf6f3}
-.tile small{display:block;font-size:.78rem;color:#dba797;font-family:Jost,sans-serif;text-transform:uppercase;letter-spacing:.06em}
+.tile:hover .tile-img{transform:scale(1.08)}
+.tile-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,.92) 0%,rgba(14,14,14,.2) 50%,transparent 100%)}
+.tile span{position:relative;z-index:2;font-family:"Cormorant Garamond",serif;font-size:1.55rem;text-shadow:0 2px 10px rgba(0,0,0,.8);color:#FAF7F2}
+.tile small{display:block;font-size:.78rem;color:#DFC488;font-family:Jost,sans-serif;text-transform:uppercase;letter-spacing:.08em}
 
-.prod{background:var(--surf);padding:24px;text-align:center;border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.08);transform-style:preserve-3d;transition:transform .18s ease-out,box-shadow .3s;perspective:1000px;border:1px solid rgba(201,139,123,.25)}
-.prod:hover{box-shadow:0 20px 40px rgba(0,0,0,.15);border-color:var(--gold)}
-.prod-img-wrap{height:200px;width:100%;overflow:hidden;border-radius:14px;margin-bottom:16px;background:#fff;transform:translateZ(25px)}
+.prod{background:#FFFFFF;padding:24px;text-align:center;border-radius:20px;box-shadow:var(--shadow-luxe);transform-style:preserve-3d;transition:transform .18s ease-out,box-shadow .3s;perspective:1000px;border:1px solid var(--border-subtle)}
+.prod:hover{box-shadow:0 20px 45px rgba(14,14,14,.1),0 0 24px rgba(197,160,89,.25);border-color:var(--gold)}
+.prod-img-wrap{height:200px;width:100%;overflow:hidden;border-radius:14px;margin-bottom:16px;background:#F3ECE2;transform:translateZ(25px)}
 .prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .prod:hover .prod-img-wrap img{transform:scale(1.06)}
-.prod h3{font-size:1.3rem;margin:0 0 6px;transform:translateZ(20px)}
+.prod h3{font-size:1.3rem;margin:0 0 6px;transform:translateZ(20px);color:var(--ink)}
 .prod .price{font-weight:600;color:var(--gt);font-size:1.15rem;margin-bottom:6px;transform:translateZ(18px)}
 .prod p{font-size:.85rem;color:var(--mut);margin:0;transform:translateZ(14px)}
 
 /* Booking Form */
-form{display:grid;gap:18px;max-width:680px}
-label{display:grid;gap:6px;font-size:.92rem}
-input,select,textarea{font:inherit;padding:14px;border:1px solid var(--mut);background:var(--bg);color:var(--ink);border-radius:10px}
+form{display:grid;gap:18px;max-width:680px;background:#FFFFFF;padding:clamp(24px,4vw,40px);border-radius:24px;box-shadow:var(--shadow-luxe);border:1px solid var(--border-subtle)}
+label{display:grid;gap:6px;font-size:.92rem;font-weight:500;color:var(--ink)}
+input,select,textarea{font:inherit;padding:14px;border:1.5px solid #DDD6C8;background:#FAF8F5;color:var(--ink);border-radius:12px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(197,160,89,.18)}
 .err{color:#b3392b;font-size:.84rem;min-height:1em}
-@media(prefers-color-scheme:dark){.err{color:#ff9d8f}}
-#ok{padding:18px;background:var(--surf);border-left:4px solid #25d366;display:none;border-radius:12px;margin-top:16px}
+#ok{padding:20px;background:#FAF7F2;border-left:4px solid #25d366;display:none;border-radius:14px;margin-top:16px;box-shadow:var(--shadow-luxe)}
 
-footer{background:var(--dark);color:#e8d3d8;padding:64px 0 96px}
-footer .logo{font-size:2.2rem}
+footer{background:#0C0C0C;color:#E6DFD5;padding:72px 0 100px;border-top:1px solid rgba(197,160,89,.25)}
+footer .logo{font-size:2.2rem;color:#FAF7F2}
+footer .logo span{color:var(--gold)}
 #wa{position:fixed;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:90;background:#25d366;color:#ffffff;padding:12px 22px;border-radius:40px;text-decoration:none;font-weight:600;font-size:.95rem;box-shadow:0 8px 24px rgba(37,211,102,.42),0 4px 12px rgba(0,0,0,.25);display:inline-flex;align-items:center;gap:10px;transition:transform .25s ease,box-shadow .25s ease;cursor:pointer}
 #wa:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(37,211,102,.58),0 6px 16px rgba(0,0,0,.3);color:#ffffff}
 #wa .wa-pulse{width:10px;height:10px;background:#ffffff;border-radius:50%;display:inline-block;box-shadow:0 0 0 rgba(255,255,255,.7);animation:waPulse 2s infinite}
 @keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.8)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
 
 /* Intro Screen */
-#intro{position:fixed;inset:0;z-index:100;background:#24101f;transition:opacity .9s}
+#intro{position:fixed;inset:0;z-index:100;background:#0C0C0C;transition:opacity .9s}
 #intro canvas{width:100%;height:100%;display:block}
 #introUI{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;display:flex;gap:12px}
-#introUI button{background:#3b1f33bb;color:#fbf6f3;border:1px solid #dba797;padding:10px 18px;cursor:pointer;font:inherit;border-radius:8px}
+#introUI button{background:rgba(20,20,20,.8);color:#FAF7F2;border:1px solid #DFC488;padding:10px 18px;cursor:pointer;font:inherit;border-radius:8px}
 .r{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}.r.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.r{opacity:1;transform:none}}
 
 .intro-hud{position:absolute;inset:0;pointer-events:none;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:14vh;z-index:5}
-.intro-tag-box{background:rgba(36,16,31,.9);backdrop-filter:blur(14px);border:1px solid rgba(219,167,151,.55);border-radius:20px;padding:16px 32px;color:#fbf6f3;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,.7);transition:opacity .6s ease,transform .6s ease;max-width:90%;margin:0 auto}
-.intro-tag-box h3{font-family:"Cormorant Garamond",serif;font-size:clamp(1.5rem,3.4vw,2.4rem);margin:0 0 4px;color:#fbf6f3}
-.intro-tag-box p{margin:0;font-size:.9rem;color:#dba797;letter-spacing:.04em}
+.intro-tag-box{background:rgba(12,12,12,.92);backdrop-filter:blur(16px);border:1px solid rgba(197,160,89,.55);border-radius:20px;padding:16px 32px;color:#FAF7F2;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,.7);transition:opacity .6s ease,transform .6s ease;max-width:90%;margin:0 auto}
+.intro-tag-box h3{font-family:"Cormorant Garamond",serif;font-size:clamp(1.5rem,3.4vw,2.4rem);margin:0 0 4px;color:#FAF7F2}
+.intro-tag-box p{margin:0;font-size:.9rem;color:#DFC488;letter-spacing:.04em}
 
 /* Responsive enhancements for Mobile, Tablet, and Desktop */
 @media(max-width:768px){
@@ -301,12 +331,25 @@ footer .logo{font-size:2.2rem}
  </div>
  <div id="introUI"><button id="snd" aria-pressed="false">Sound: Off</button><button id="skip">Skip intro</button></div>
 </div>
-<header><div class="wrap"><a class="logo" href="#home">Glow &amp; Grace</a><button id="mb" aria-label="Menu">Menu</button>
+<header><div class="wrap"><a class="logo" href="#home">Glow &amp; Grace<span>.</span></a><button id="mb" aria-label="Menu">Menu</button>
 <nav id="nav"><a href="#about">About</a><a href="#services">Services</a><a href="#exp">Haircut Experience</a><a href="#work">Our Work</a><a href="#reviews">Testimonials</a><a href="#products">Products</a><a href="#book">Book</a><a href="#contact">Contact</a><a href="https://api.whatsapp.com/send?phone=919019919151&text=Hello%20Glow%20%26%20Grace%2C%20I'd%20like%20to%20enquire%20about%20an%20appointment." target="_blank" rel="noopener" style="color:#25d366;font-weight:600">💬 WhatsApp</a></nav></div></header>
 <main>
 <section id="home"><div id="hero" style="margin-top:-96px;margin-bottom:-96px"><div class="orb" aria-hidden="true"></div><div class="wrap" style="position:relative">
-<h1>Glow &amp;<br>Grace</h1><p>A luxury salon and beauty destination in Chennai where every detail is considered, from the first precision cut to the final finish.</p>
-<div class="row"><a class="btn" href="#book">Book appointment</a><a class="btn ghost" href="#exp">Experience your haircut</a></div></div></div></section>
+<div style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;border:1.5px solid var(--border-gold);padding:7px 18px;border-radius:30px;font-size:.78rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--gt);margin-bottom:22px;box-shadow:0 4px 14px rgba(197,160,89,.15)">
+  <span>✦</span> Luxury Salon &amp; Aesthetic Atelier • Nungambakkam, Chennai
+</div>
+<h1>Artistry in Every Strand.<br><span style="background:linear-gradient(135deg,#8E6B2C 0%,#C5A059 50%,#7A5820 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Radiance in Every Look.</span></h1>
+<p>Step inside Chennai's premier luxury salon. Where master shear work, multi-dimensional balayage, and restorative skin rituals converge under warm champagne lighting and bespoke consultations.</p>
+<div class="row">
+  <a class="btn" href="#book">Book Appointment</a>
+  <a class="btn ghost" href="#exp">Experience Haircut Transformation</a>
+</div>
+<div style="display:flex;gap:clamp(18px,3vw,36px);flex-wrap:wrap;margin-top:42px;padding-top:28px;border-top:1px solid var(--border-subtle)">
+  <div><b style="font-size:1.35rem;font-family:'Cormorant Garamond',serif;color:var(--ink);display:block">4.9 ★★★★★</b><span style="font-size:.76rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em">650+ Verified Reviews</span></div>
+  <div><b style="font-size:1.35rem;font-family:'Cormorant Garamond',serif;color:var(--ink);display:block">Vidal Sassoon</b><span style="font-size:.76rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em">Certified Senior Stylists</span></div>
+  <div><b style="font-size:1.35rem;font-family:'Cormorant Garamond',serif;color:var(--ink);display:block">Valet Parking</b><span style="font-size:.76rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em">KNK Road Flagship</span></div>
+</div>
+</div></div></section>
 
 <section id="about" class="about"><div class="wrap grid g2"><div class="r"><h2>A salon built for how you want to feel</h2>
 <p>Glow &amp; Grace brings together hair, skin, makeup and grooming under one warm, quiet roof in Chennai. Our stylists listen first, then craft looks that suit your life.</p>
@@ -892,7 +935,7 @@ function size(r,cam,el){if(!r||!cam||!el)return;const w=el.clientWidth||window.i
 
 function chair(p,x,z,ry=0){
   if(!T)return null;
-  const g=new T.Group(),lea=M(0x32162a,{roughness:.35}),gold=M(0xdba797,{metalness:.9,roughness:.25});
+  const g=new T.Group(),lea=M(0x141414,{roughness:.35,metalness:.1}),gold=M(0xC5A059,{metalness:.92,roughness:.22});
   box(.85,.18,.85,lea,0,.75,0,g);
   box(.85,.92,.18,lea,0,1.26,-.4,g);
   box(.14,.4,.65,lea,-.45,1.05,-.05,g);
@@ -905,11 +948,11 @@ function chair(p,x,z,ry=0){
 function mirror(p,x,z,w=2.6,h=2.8){
   if(!T)return null;
   const g=new T.Group();
-  box(w+.25,h+.25,.1,M(0xdba797,{metalness:.92,roughness:.25}),0,1.9,0,g);
+  box(w+.25,h+.25,.1,M(0xC5A059,{metalness:.94,roughness:.22}),0,1.9,0,g);
   box(w,h,.06,M(0xdfeaf0,{metalness:1,roughness:.03,emissive:0x1b2226}),0,1.9,.04,g);
   // Backlit frame LEDs
   for(let lx=-w/2+.2;lx<=w/2-.2;lx+=.45){
-    const bulb=new T.Mesh(new T.SphereGeometry(.035,8,8),new T.MeshBasicMaterial({color:0xffecc7}));
+    const bulb=new T.Mesh(new T.SphereGeometry(.035,8,8),new T.MeshBasicMaterial({color:0xfff0d0}));
     bulb.position.set(lx,1.9+h/2-.08,.08);g.add(bulb);
   }
   g.position.set(x,0,z);p.add(g);return g;
@@ -917,20 +960,20 @@ function mirror(p,x,z,w=2.6,h=2.8){
 
 function lamp(p,x,y,z,i=1.2){
   if(!T)return;
-  const l=new T.PointLight(0xffd5a3,i,14);l.position.set(x,y,z);p.add(l);
-  const b=new T.Mesh(new T.SphereGeometry(.12,12,12),new T.MeshBasicMaterial({color:0xffedd0}));
+  const l=new T.PointLight(0xffecc2,i,14);l.position.set(x,y,z);p.add(l);
+  const b=new T.Mesh(new T.SphereGeometry(.12,12,12),new T.MeshBasicMaterial({color:0xfff6e5}));
   b.position.copy(l.position);p.add(b);
 }
 
 // Full Human Client Model with Cape, Facial Expressions & Dynamic Hair
 function createHumanClient(opts={}){
-  const skinCol=opts.skin||0xe2b18e, capeCol=opts.cape||0x3b1f33;
+  const skinCol=opts.skin||0xe2b18e, capeCol=opts.cape||0x121212;
   const g=new T.Group();
   
   // Luxury Cape draping over chair
   const cape=new T.Mesh(new T.CylinderGeometry(.52,.82,1.35,24),M(capeCol,{roughness:.75}));
   cape.position.set(0,1.35,.04);g.add(cape);
-  const collar=new T.Mesh(new T.TorusGeometry(.24,.04,10,24),M(0xdba797,{metalness:.8,roughness:.3}));
+  const collar=new T.Mesh(new T.TorusGeometry(.24,.04,10,24),M(0xC5A059,{metalness:.88,roughness:.25}));
   collar.rotation.x=Math.PI/2;collar.position.set(0,2.02,.04);g.add(collar);
 
   // Neck & Head
@@ -997,7 +1040,7 @@ function createHumanClient(opts={}){
 // Stylist Model with Moving Cutting Arms and Scissors
 function createStylist(opts={}){
   const g=new T.Group();
-  const bodyMat=M(0x281224), skinMat=M(0xb88564), apronMat=M(0x3b1f33);
+  const bodyMat=M(0x141414), skinMat=M(0xb88564), apronMat=M(0x1c1b19);
   
   const body=new T.Mesh(new T.CylinderGeometry(.32,.38,1.52,16),bodyMat);
   body.position.y=1.2;g.add(body);
@@ -1013,7 +1056,7 @@ function createStylist(opts={}){
   const armR=new T.Group();armR.position.set(-.32,1.85,0);g.add(armR);
   const upperR=new T.Mesh(new T.CylinderGeometry(.07,.06,.78,10),bodyMat);upperR.position.y=-.38;armR.add(upperR);
   const sciGroup=new T.Group();sciGroup.position.set(0,-.82,0);armR.add(sciGroup);
-  const bladeMat=M(0xe0e0e0,{metalness:.95,roughness:.15});
+  const bladeMat=M(0xe8e8e8,{metalness:.95,roughness:.15});
   const blade1=box(.02,.32,.01,bladeMat,0,.15,0,sciGroup);blade1.geometry.translate(0,.15,0);
   const blade2=box(.02,.32,.01,bladeMat,0,.15,0,sciGroup);blade2.geometry.translate(0,.15,0);
   armR.rotation.set(-.2,0,.85);
@@ -1021,7 +1064,7 @@ function createStylist(opts={}){
   // Comb Arm (Left arm of stylist)
   const armL=new T.Group();armL.position.set(.32,1.85,0);g.add(armL);
   const upperL=new T.Mesh(new T.CylinderGeometry(.07,.06,.78,10),bodyMat);upperL.position.y=-.38;armL.add(upperL);
-  const comb=box(.03,.22,.08,M(0xdba797,{metalness:.8}),0,-.82,.1,armL);
+  const comb=box(.03,.22,.08,M(0xC5A059,{metalness:.88,roughness:.25}),0,-.82,.1,armL);
   armL.rotation.set(-.3,0,-.7);
 
   return {group:g, armR, armL, blade1, blade2, sciGroup};
@@ -1061,31 +1104,31 @@ if(!glOK||matchMedia("(prefers-reduced-motion:reduce)").matches){
 }else{
   document.body.style.overflow="hidden";
   const cv=$("#ic"),r=renderer(cv),sc=new T.Scene(),cam=new T.PerspectiveCamera(55,1,.1,80);
-  sc.background=new T.Color(0x24101f);
-  sc.fog=new T.Fog(0x24101f,12,38);
+  sc.background=new T.Color(0x0C0C0C);
+  sc.fog=new T.Fog(0x0C0C0C,12,38);
 
   sc.add(new T.AmbientLight(0xffffff,.4));
-  const sun=new T.DirectionalLight(0xffe2bf,.55);
+  const sun=new T.DirectionalLight(0xfff2d6,.65);
   sun.position.set(-6,10,12);sc.add(sun);
 
-  box(60,.1,60,M(0x281324,{roughness:.25,metalness:.4}),0,-.05,0,sc);
-  const wall=M(0x4a2a43);
+  box(60,.1,60,M(0x141414,{roughness:.25,metalness:.4}),0,-.05,0,sc);
+  const wall=M(0xEDE6DB);
   box(5.2,5,.3,wall,-4.4,2.5,0,sc);
   box(5.2,5,.3,wall,4.4,2.5,0,sc);
   box(3.6,1.4,.3,wall,0,4.3,0,sc);
-  box(14,.3,10,M(0x3b1f33),0,5.1,-4.5,sc);
+  box(14,.3,10,M(0x161513),0,5.1,-4.5,sc);
 
   // Exterior Sign
   const sg=document.createElement("canvas");sg.width=1024;sg.height=256;const x=sg.getContext("2d");
-  x.fillStyle="#2a1625";x.fillRect(0,0,1024,256);
-  x.fillStyle="#dba797";x.font="500 100px Georgia,serif";x.textAlign="center";x.textBaseline="middle";
-  x.fillText("Glow & Grace • Chennai",512,128);
+  x.fillStyle="#0E0E0E";x.fillRect(0,0,1024,256);
+  x.fillStyle="#C5A059";x.font="600 96px 'Cormorant Garamond',Georgia,serif";x.textAlign="center";x.textBaseline="middle";
+  x.fillText("Glow & Grace • Atelier",512,128);
   const sgm=new T.Mesh(new T.PlaneGeometry(3.6,.9),new T.MeshBasicMaterial({map:new T.CanvasTexture(sg)}));
   sgm.position.set(0,4.3,.17);sc.add(sgm);
 
-  // Interior floor & back wall
-  box(14,.02,12,M(0x42223c,{roughness:.2,metalness:.3}),0,.01,-6,sc);
-  box(14,5,.2,M(0x542f4c),0,2.5,-9.5,sc);
+  // Interior floor & back wall (Cream Italian Marble)
+  box(14,.02,12,M(0xF7F2E9,{roughness:.2,metalness:.25}),0,.01,-6,sc);
+  box(14,5,.2,M(0xEBE3D5),0,2.5,-9.5,sc);
 
   // Mirrors & Chairs
   chair(sc,-3.2,-5.0,0);mirror(sc,-3.2,-9.3);
@@ -1121,8 +1164,8 @@ if(!glOK||matchMedia("(prefers-reduced-motion:reduce)").matches){
   [dL,dR].forEach((d,i)=>{
     const w=1.8;
     box(w,3.4,.05,gm,i?w/2:-w/2,1.7,0,d);
-    box(.08,3.4,.08,M(0xdba797,{metalness:.9}),i?w:-w,1.7,0,d);
-    box(.06,1,.1,M(0xdba797,{metalness:.9}),i?.2:-.2,1.6,.08,d);
+    box(.08,3.4,.08,M(0xC5A059,{metalness:.95,roughness:.2}),i?w:-w,1.7,0,d);
+    box(.06,1,.1,M(0xC5A059,{metalness:.95,roughness:.2}),i?.2:-.2,1.6,.08,d);
     sc.add(d);
   });
 
