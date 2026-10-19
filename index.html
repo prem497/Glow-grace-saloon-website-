@@ -235,11 +235,14 @@ label{display:grid;gap:6px;font-size:.92rem}
 input,select,textarea{font:inherit;padding:14px;border:1px solid var(--mut);background:var(--bg);color:var(--ink);border-radius:10px}
 .err{color:#b3392b;font-size:.84rem;min-height:1em}
 @media(prefers-color-scheme:dark){.err{color:#ff9d8f}}
-#ok{padding:18px;background:var(--surf);border-left:4px solid var(--gold);display:none;border-radius:8px}
+#ok{padding:18px;background:var(--surf);border-left:4px solid #25d366;display:none;border-radius:12px;margin-top:16px}
 
 footer{background:var(--dark);color:#e8d3d8;padding:64px 0 96px}
 footer .logo{font-size:2.2rem}
-#wa{position:fixed;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:60;background:#25d366;color:#0b2b17;padding:14px 24px;border-radius:40px;text-decoration:none;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+#wa{position:fixed;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:90;background:#25d366;color:#ffffff;padding:12px 22px;border-radius:40px;text-decoration:none;font-weight:600;font-size:.95rem;box-shadow:0 8px 24px rgba(37,211,102,.42),0 4px 12px rgba(0,0,0,.25);display:inline-flex;align-items:center;gap:10px;transition:transform .25s ease,box-shadow .25s ease;cursor:pointer}
+#wa:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px rgba(37,211,102,.58),0 6px 16px rgba(0,0,0,.3);color:#ffffff}
+#wa .wa-pulse{width:10px;height:10px;background:#ffffff;border-radius:50%;display:inline-block;box-shadow:0 0 0 rgba(255,255,255,.7);animation:waPulse 2s infinite}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.8)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
 
 /* Intro Screen */
 #intro{position:fixed;inset:0;z-index:100;background:#24101f;transition:opacity .9s}
@@ -299,7 +302,7 @@ footer .logo{font-size:2.2rem}
  <div id="introUI"><button id="snd" aria-pressed="false">Sound: Off</button><button id="skip">Skip intro</button></div>
 </div>
 <header><div class="wrap"><a class="logo" href="#home">Glow &amp; Grace</a><button id="mb" aria-label="Menu">Menu</button>
-<nav id="nav"><a href="#about">About</a><a href="#services">Services</a><a href="#exp">Haircut Experience</a><a href="#work">Our Work</a><a href="#reviews">Testimonials</a><a href="#products">Products</a><a href="#book">Book</a><a href="#contact">Contact</a></nav></div></header>
+<nav id="nav"><a href="#about">About</a><a href="#services">Services</a><a href="#exp">Haircut Experience</a><a href="#work">Our Work</a><a href="#reviews">Testimonials</a><a href="#products">Products</a><a href="#book">Book</a><a href="#contact">Contact</a><a href="https://api.whatsapp.com/send?phone=919840012345&text=Hello%20Glow%20%26%20Grace%2C%20I'd%20like%20to%20enquire%20about%20an%20appointment." target="_blank" rel="noopener" style="color:#25d366;font-weight:600">💬 WhatsApp</a></nav></div></header>
 <main>
 <section id="home"><div id="hero" style="margin-top:-96px;margin-bottom:-96px"><div class="orb" aria-hidden="true"></div><div class="wrap" style="position:relative">
 <h1>Glow &amp;<br>Grace</h1><p>A luxury salon and beauty destination in Chennai where every detail is considered, from the first precision cut to the final finish.</p>
@@ -417,7 +420,14 @@ footer .logo{font-size:2.2rem}
 <label>Service<select id="sv"></select><span class="err"></span></label>
 <label>Date<input id="dt" type="date"><span class="err"></span></label>
 <label>Time slot<select id="tm"><option value="">Choose a time</option><option>10:00</option><option>11:30</option><option>13:00</option><option>14:30</option><option>16:00</option><option>17:30</option></select><span class="err"></span></label>
-<button class="btn" type="submit">Request appointment</button><div id="ok" role="status"></div></form><p class="tag">Demo form: details stay in your browser and are not sent anywhere.</p></div></section>
+<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px">
+  <button class="btn" type="submit">Request appointment</button>
+  <button class="btn" type="button" id="btnWaDirect" style="background:#25d366;color:#ffffff;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;padding:14px 22px;border-radius:10px;cursor:pointer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.57C9.33 7.57 9 7.64 8.73 7.93C8.45 8.23 7.68 8.95 7.68 10.42C7.68 11.89 8.75 13.31 8.9 13.51C9.05 13.71 11.13 16.92 14.33 18.3C15.09 18.63 15.69 18.83 16.15 18.98C16.92 19.22 17.62 19.19 18.17 19.11C18.79 19.02 20.08 18.33 20.35 17.57C20.62 16.81 20.62 16.16 20.54 16.03C20.46 15.9 20.26 15.82 19.96 15.67C19.66 15.52 18.19 14.79 17.91 14.69C17.64 14.59 17.44 14.54 17.24 14.84C17.04 15.14 16.47 15.82 16.3 16.02C16.13 16.22 15.95 16.25 15.65 16.1C15.35 15.95 14.39 15.64 13.25 14.62C12.37 13.84 11.78 12.87 11.6 12.57C11.43 12.27 11.58 12.11 11.73 11.96C11.87 11.83 12.04 11.61 12.19 11.44C12.34 11.27 12.39 11.14 12.49 10.94C12.59 10.74 12.54 10.57 12.47 10.42C12.39 10.27 11.82 8.87 11.58 8.3C11.35 7.74 11.12 7.82 10.94 7.81C10.77 7.8 10.57 7.8 10.37 7.8C10.17 7.8 9.84 7.87 9.56 8.17L9.53 7.57Z"/></svg>
+    Book via WhatsApp
+  </button>
+</div>
+<div id="ok" role="status"></div></form><p class="tag">Direct WhatsApp booking confirmation available. Valet parking &amp; refreshments included.</p></div></section>
 
 <section id="contact"><div class="wrap"><h2>Visit Our Chennai Salon</h2>
 <p style="color:var(--mut);max-width:60ch">Experience luxury hair artistry, restorative spa rituals and bespoke beauty at our flagship salon in Nungambakkam, Chennai.</p>
@@ -427,9 +437,13 @@ footer .logo{font-size:2.2rem}
     No. 42/1, Khader Nawaz Khan Road,<br>
     Nungambakkam, Chennai,<br>
     Tamil Nadu – 600006, India.<br><br>
-    <b style="font-size:1.1rem;color:var(--gt);display:block;margin-bottom:6px">📞 Telephone &amp; Mobile</b>
-    +91 44 2833 4567<br>
-    +91 98400 12345
+    <b style="font-size:1.1rem;color:var(--gt);display:block;margin-bottom:6px">📞 Telephone &amp; WhatsApp</b>
+    Telephone: <a href="tel:+914428334567" style="color:var(--gt);text-decoration:underline">+91 44 2833 4567</a><br>
+    Mobile: <a href="tel:+919840012345" style="color:var(--gt);text-decoration:underline">+91 98400 12345</a><br>
+    <a href="https://api.whatsapp.com/send?phone=919840012345&text=Hello%20Glow%20%26%20Grace%2C%20I'd%20like%20to%20enquire%20about%20an%20appointment." target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;background:#25d366;color:#ffffff;padding:8px 18px;border-radius:24px;text-decoration:none;font-weight:600;font-size:.9rem;box-shadow:0 4px 12px rgba(37,211,102,.3)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.57C9.33 7.57 9 7.64 8.73 7.93C8.45 8.23 7.68 8.95 7.68 10.42C7.68 11.89 8.75 13.31 8.9 13.51C9.05 13.71 11.13 16.92 14.33 18.3C15.09 18.63 15.69 18.83 16.15 18.98C16.92 19.22 17.62 19.19 18.17 19.11C18.79 19.02 20.08 18.33 20.35 17.57C20.62 16.81 20.62 16.16 20.54 16.03C20.46 15.9 20.26 15.82 19.96 15.67C19.66 15.52 18.19 14.79 17.91 14.69C17.64 14.59 17.44 14.54 17.24 14.84C17.04 15.14 16.47 15.82 16.3 16.02C16.13 16.22 15.95 16.25 15.65 16.1C15.35 15.95 14.39 15.64 13.25 14.62C12.37 13.84 11.78 12.87 11.6 12.57C11.43 12.27 11.58 12.11 11.73 11.96C11.87 11.83 12.04 11.61 12.19 11.44C12.34 11.27 12.39 11.14 12.49 10.94C12.59 10.74 12.54 10.57 12.47 10.42C12.39 10.27 11.82 8.87 11.58 8.3C11.35 7.74 11.12 7.82 10.94 7.81C10.77 7.8 10.57 7.8 10.37 7.8C10.17 7.8 9.84 7.87 9.56 8.17L9.53 7.57Z"/></svg>
+      Chat with Us on WhatsApp
+    </a>
   </div>
   <div class="fact">
     <b style="font-size:1.1rem;color:var(--gt);display:block;margin-bottom:6px">✉ Email Enquiries</b>
@@ -452,17 +466,28 @@ footer .logo{font-size:2.2rem}
     <p style="font-size:.85rem;color:#a8909d;margin:0">© <span id="yr"></span> Glow &amp; Grace Chennai. All rights reserved.</p>
   </div>
 </div></footer>
-<a id="wa" href="#" target="_blank" rel="noopener">WhatsApp us</a>
+<a id="wa" href="https://api.whatsapp.com/send?phone=919840012345&text=Hello%20Glow%20%26%20Grace%2C%20I'd%20like%20to%20enquire%20about%20an%20appointment." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" title="Chat with Glow &amp; Grace on WhatsApp (+91 98400 12345)">
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.57C9.33 7.57 9 7.64 8.73 7.93C8.45 8.23 7.68 8.95 7.68 10.42C7.68 11.89 8.75 13.31 8.9 13.51C9.05 13.71 11.13 16.92 14.33 18.3C15.09 18.63 15.69 18.83 16.15 18.98C16.92 19.22 17.62 19.19 18.17 19.11C18.79 19.02 20.08 18.33 20.35 17.57C20.62 16.81 20.62 16.16 20.54 16.03C20.46 15.9 20.26 15.82 19.96 15.67C19.66 15.52 18.19 14.79 17.91 14.69C17.64 14.59 17.44 14.54 17.24 14.84C17.04 15.14 16.47 15.82 16.3 16.02C16.13 16.22 15.95 16.25 15.65 16.1C15.35 15.95 14.39 15.64 13.25 14.62C12.37 13.84 11.78 12.87 11.6 12.57C11.43 12.27 11.58 12.11 11.73 11.96C11.87 11.83 12.04 11.61 12.19 11.44C12.34 11.27 12.39 11.14 12.49 10.94C12.59 10.74 12.54 10.57 12.47 10.42C12.39 10.27 11.82 8.87 11.58 8.3C11.35 7.74 11.12 7.82 10.94 7.81C10.77 7.8 10.57 7.8 10.37 7.8C10.17 7.8 9.84 7.87 9.56 8.17L9.53 7.57Z"/></svg>
+  <span>WhatsApp</span>
+</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const CONFIG={whatsapp:"",msg:"Hello Glow & Grace, I'd like to enquire about an appointment."};
+const CONFIG={whatsapp:"919840012345",msg:"Hello Glow & Grace, I'd like to enquire about an appointment at your Chennai salon."};
 const $=s=>document.querySelector(s);
+const getWhatsAppUrl=customMsg=>{
+  const num=(CONFIG.whatsapp||"919840012345").replace(/[^0-9]/g,"");
+  return "https://api.whatsapp.com/send?phone="+num+"&text="+encodeURIComponent(customMsg||CONFIG.msg);
+};
 const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&x.target.classList.add("in")),{threshold:.15});
 const observeAll=()=>document.querySelectorAll(".r:not(.in)").forEach(x=>io.observe(x));
 $("#yr").textContent=new Date().getFullYear();
-$("#wa").href=CONFIG.whatsapp?"https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(CONFIG.msg):"#contact";
-$("#wa").title=CONFIG.whatsapp?"":"Add your WhatsApp number in CONFIG";
+const waEl=$("#wa");
+if(waEl){
+  waEl.href=getWhatsAppUrl();
+  waEl.title="Chat with Glow & Grace on WhatsApp (+91 98400 12345)";
+}
 $("#mb").onclick=()=>$("#nav").classList.toggle("open");
 $("#nav").onclick=()=>$("#nav").classList.remove("open");
 const v=p=>`<svg viewBox="0 0 48 48" width="76" height="76" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
@@ -775,14 +800,79 @@ observeAll();
 
 // booking
 $("#dt").min=new Date().toISOString().slice(0,10);
-$("#bf").onsubmit=e=>{e.preventDefault();let ok=true;const set=(el,m)=>{el.parentNode.querySelector(".err").textContent=m;if(m)ok=false};
-set($("#fn"),$("#fn").value.trim().length<2?"Enter your full name.":"");
-set($("#ph"),/^[+\d][\d\s-]{7,15}$/.test($("#ph").value.trim())?"":"Enter a valid phone number.");
-set($("#em"),/^\S+@\S+\.\S+$/.test($("#em").value)?"":"Enter a valid email address.");
-set(sv,sv.value?"":"Choose a service.");
-set($("#dt"),!$("#dt").value||$("#dt").value<$("#dt").min?"Choose today or a later date.":"");
-set($("#tm"),$("#tm").value?"":"Choose a time slot.");
-if(ok){const o=$("#ok");o.style.display="block";o.textContent=`Request received, ${$("#fn").value.trim()}. ${sv.value} on ${$("#dt").value} at ${$("#tm").value}. This is a demo, so no booking was sent.`;$("#bf").reset()}};
+
+function getBookingMsg(){
+  const fn=($("#fn").value||"").trim();
+  const ph=($("#ph").value||"").trim();
+  const em=($("#em").value||"").trim();
+  const sName=sv.value||"Salon Consultation";
+  const dt=$("#dt").value||"Preferred Date";
+  const tm=$("#tm").value||"Preferred Slot";
+  return `✨ *New Appointment Request - Glow & Grace Salon* ✨\n\n`+
+         `👤 *Client Name:* ${fn}\n`+
+         `📱 *Phone:* ${ph}\n`+
+         `✉️ *Email:* ${em}\n`+
+         `✂️ *Service:* ${sName}\n`+
+         `📅 *Date:* ${dt}\n`+
+         `⏰ *Time Slot:* ${tm}\n\n`+
+         `_I would like to confirm availability for this appointment._`;
+}
+
+function validateBookingForm(){
+  let ok=true;
+  const set=(el,m)=>{
+    el.parentNode.querySelector(".err").textContent=m;
+    if(m)ok=false;
+  };
+  set($("#fn"),$("#fn").value.trim().length<2?"Enter your full name.":"");
+  set($("#ph"),/^[+\d][\d\s-]{7,15}$/.test($("#ph").value.trim())?"":"Enter a valid phone number.");
+  set($("#em"),/^\S+@\S+\.\S+$/.test($("#em").value)?"":"Enter a valid email address.");
+  set(sv,sv.value?"":"Choose a service.");
+  set($("#dt"),!$("#dt").value||$("#dt").value<$("#dt").min?"Choose today or a later date.":"");
+  set($("#tm"),$("#tm").value?"":"Choose a time slot.");
+  return ok;
+}
+
+$("#bf").onsubmit=e=>{
+  e.preventDefault();
+  if(!validateBookingForm())return;
+  const fn=$("#fn").value.trim();
+  const sName=sv.value;
+  const dt=$("#dt").value;
+  const tm=$("#tm").value;
+  const waUrl=getWhatsAppUrl(getBookingMsg());
+  
+  const o=$("#ok");
+  o.style.display="block";
+  o.innerHTML=`
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.5rem">🎉</span>
+        <b style="font-size:1.05rem;color:var(--ink)">Appointment Request Prepared for ${fn}!</b>
+      </div>
+      <p style="margin:0;color:var(--ink);line-height:1.5">
+        Service: <strong>${sName}</strong> on <strong>${dt}</strong> at <strong>${tm}</strong>.<br>
+        Click the green button below to send your details directly to our WhatsApp concierge:
+      </p>
+      <div>
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn" style="background:#25d366;color:#ffffff;border:none;display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:10px;box-shadow:0 6px 18px rgba(37,211,102,.4)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.57C9.33 7.57 9 7.64 8.73 7.93C8.45 8.23 7.68 8.95 7.68 10.42C7.68 11.89 8.75 13.31 8.9 13.51C9.05 13.71 11.13 16.92 14.33 18.3C15.09 18.63 15.69 18.83 16.15 18.98C16.92 19.22 17.62 19.19 18.17 19.11C18.79 19.02 20.08 18.33 20.35 17.57C20.62 16.81 20.62 16.16 20.54 16.03C20.46 15.9 20.26 15.82 19.96 15.67C19.66 15.52 18.19 14.79 17.91 14.69C17.64 14.59 17.44 14.54 17.24 14.84C17.04 15.14 16.47 15.82 16.3 16.02C16.13 16.22 15.95 16.25 15.65 16.1C15.35 15.95 14.39 15.64 13.25 14.62C12.37 13.84 11.78 12.87 11.6 12.57C11.43 12.27 11.58 12.11 11.73 11.96C11.87 11.83 12.04 11.61 12.19 11.44C12.34 11.27 12.39 11.14 12.49 10.94C12.59 10.74 12.54 10.57 12.47 10.42C12.39 10.27 11.82 8.87 11.58 8.3C11.35 7.74 11.12 7.82 10.94 7.81C10.77 7.8 10.57 7.8 10.37 7.8C10.17 7.8 9.84 7.87 9.56 8.17L9.53 7.57Z"/></svg>
+          Open WhatsApp to Send Booking
+        </a>
+      </div>
+    </div>
+  `;
+  window.open(waUrl,"_blank","noopener,noreferrer");
+};
+
+const btnWaDirect=$("#btnWaDirect");
+if(btnWaDirect){
+  btnWaDirect.onclick=()=>{
+    if(!validateBookingForm())return;
+    const waUrl=getWhatsAppUrl(getBookingMsg());
+    window.open(waUrl,"_blank","noopener,noreferrer");
+  };
+}
 // reveal
 observeAll();
 
